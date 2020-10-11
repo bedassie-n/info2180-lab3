@@ -1,8 +1,10 @@
 window.onload = function(){
     var squares = Array.from(document.getElementById("board").children);
-    var state = [0,0,0,0,0,0,0,0]; //1-3 rows, 4-7 cols, 8-9 diagonals
+    var state = [0,0,0,0,0,0,0,0]; //0-2 rows, 3-6 cols, 7-8 diagonals
     var count = 0;
     var status = document.getElementById("status");
+    var initialmsg = status.innerHTML;
+
     squares.forEach((element, index) => {
         index;
         element.classList.add("square");
@@ -15,7 +17,7 @@ window.onload = function(){
                     case 0:
                         state[0]++;
                         state[3]++;
-                        state[7]++;
+                        state[6]++;
                         break;
                     case 1:
                         state[0]++;
@@ -24,17 +26,17 @@ window.onload = function(){
                     case 2:
                         state[0]++;
                         state[5]++;
-                        state[8]++;
+                        state[7]++;
                         break;
                     case 3:
                         state[1]++;
                         state[3]++;
                         break;
                     case 4:
-                        state[2]++;
+                        state[1]++;
                         state[4]++;
+                        state[6]++;
                         state[7]++;
-                        state[8]++;
                         break;
                     case 5:
                         state[1]++;
@@ -43,7 +45,7 @@ window.onload = function(){
                     case 6:
                         state[2]++;
                         state[3]++;
-                        state[8]++;
+                        state[7]++;
                         break;
                     case 7:
                         state[3]++;
@@ -52,7 +54,7 @@ window.onload = function(){
                     case 8:
                         state[3]++;
                         state[5]++;
-                        state[7]++;
+                        state[6]++;
                         break;
                     default:
                         break;
@@ -67,7 +69,7 @@ window.onload = function(){
                     case 0:
                         state[0]--;
                         state[3]--;
-                        state[7]--;
+                        state[6]--;
                         break;
                     case 1:
                         state[0]--;
@@ -76,17 +78,17 @@ window.onload = function(){
                     case 2:
                         state[0]--;
                         state[5]--;
-                        state[8]--;
+                        state[7]--;
                         break;
                     case 3:
                         state[1]--;
                         state[3]--;
                         break;
                     case 4:
-                        state[2]--;
+                        state[1]--;
                         state[4]--;
+                        state[6]--;
                         state[7]--;
-                        state[8]--;
                         break;
                     case 5:
                         state[1]--;
@@ -95,16 +97,16 @@ window.onload = function(){
                     case 6:
                         state[2]--;
                         state[3]--;
-                        state[8]--;
+                        state[7]--;
                         break;
                     case 7:
-                        state[3]--;
+                        state[2]--;
                         state[4]--;
                         break;
                     case 8:
-                        state[3]--;
+                        state[2]--;
                         state[5]--;
-                        state[7]--;
+                        state[6]--;
                         break;
                     default:
                         break;
@@ -116,8 +118,8 @@ window.onload = function(){
             } else if(state.includes(-3)){
                 status.innerHTML = "Congratulations! O is the Winner!";
                 status.classList.add("you-won");
-
             }
+            console.log(state);
         })
         element.addEventListener("mouseover", function(){
             element.classList.add("hover");
@@ -126,4 +128,16 @@ window.onload = function(){
             element.classList.remove("hover");
         })
     });
+
+    var newGame = document.querySelector(".btn");
+    newGame.addEventListener("click", function(){
+        squares.forEach(element => {
+            element.innerHTML = "";
+        })
+        status.innerHTML = initialmsg;
+        count = 0;
+        state.forEach((value,index) => {state[index] = 0;});
+        //console.log("here");
+        status.classList.remove("you-won");
+    })
 };
