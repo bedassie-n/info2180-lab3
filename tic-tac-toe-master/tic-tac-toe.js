@@ -14,5 +14,11 @@ window.onload = function(){
                 state.push("O");
             }
         })
+        element.addEventListener("mouseover", function(){
+            element.classList.add("hover");
+        })
+        element.addEventListener("mouseout", function(){
+            element.classList.remove("hover");
+        })
     });
 };
