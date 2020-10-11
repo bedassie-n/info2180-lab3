@@ -8,7 +8,7 @@ window.onload = function(){
     squares.forEach((element, index) => {
         index;
         element.classList.add("square");
-        element.addEventListener("click", function(){
+        element.addEventListener("click", function init(){
             if (count % 2 == 0 && element.innerHTML == ""){
                 element.classList.add("X");
                 element.innerHTML = "X";
@@ -48,11 +48,11 @@ window.onload = function(){
                         state[7]++;
                         break;
                     case 7:
-                        state[3]++;
+                        state[2]++;
                         state[4]++;
                         break;
                     case 8:
-                        state[3]++;
+                        state[2]++;
                         state[5]++;
                         state[6]++;
                         break;
@@ -115,9 +115,15 @@ window.onload = function(){
             if(state.includes(3)){
                 status.innerHTML = "Congratulations! X is the Winner!";
                 status.classList.add("you-won");
+                squares.forEach(element => {
+                    element.removeEventListener("click", init);
+                })
             } else if(state.includes(-3)){
                 status.innerHTML = "Congratulations! O is the Winner!";
                 status.classList.add("you-won");
+                squares.forEach(element => {
+                    element.removeEventListener("click", init);
+                })
             }
             console.log(state);
         })
@@ -133,6 +139,7 @@ window.onload = function(){
     newGame.addEventListener("click", function(){
         squares.forEach(element => {
             element.innerHTML = "";
+            element.className = "square";
         })
         status.innerHTML = initialmsg;
         count = 0;
