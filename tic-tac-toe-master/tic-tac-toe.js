@@ -116,13 +116,13 @@ window.onload = function(){
                 status.innerHTML = "Congratulations! X is the Winner!";
                 status.classList.add("you-won");
                 squares.forEach(element => {
-                    element.removeEventListener("click", init);
+                    //element.removeEventListener("click", init);
                 })
             } else if(state.includes(-3)){
                 status.innerHTML = "Congratulations! O is the Winner!";
                 status.classList.add("you-won");
                 squares.forEach(element => {
-                    element.removeEventListener("click", init);
+                    //element.removeEventListener("click", init);
                 })
             }
             console.log(state);
